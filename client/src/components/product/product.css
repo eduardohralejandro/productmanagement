@@ -1,0 +1,24 @@
+.products {
+  display: flex;
+  background-color: #fff;
+  border-radius: 5px;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  padding: 5rem,5rem,8rem,8rem;
+  height: auto;
+  width: 28rem;
+  margin: 4rem 4rem;
+  box-shadow: 0 2px 8px 0 #cfd6d6;
+  align-items: center;     
+  flex-direction: column; 
+  justify-content: center;  
+
+}
+
+
+.element {
+  padding: 1rem;
+}
