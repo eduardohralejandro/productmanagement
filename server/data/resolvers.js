@@ -6,17 +6,18 @@ import { Products } from '../db/dbConnector.ts'
 
 export const resolvers = {
     Query:{
-      getAllProducts : (root) => {
-                return new Promise((resolve,reject)=>{
-                    Products.find((err,products)=>{
-                        if(err) reject(err);
-                        else resolve(products);
-                    })
-                })
-            },
+      getAllProducts: async (root) => {
+
+        try {
+          return await Products.find();
+        } catch (error) {
+          throw new Error(error);
+        }
+
+      },
     },
     Mutation:{
-      createProduct: (root, { product, description, price }) => {
+      createProduct: async (root, { product, description, price }) => {
             const newProduct = new Products({
                 product : product,
                 description : description,
@@ -25,12 +26,11 @@ export const resolvers = {
 
             newProduct.id = newProduct._id;
 
-            return new Promise((resolve,reject)=>{
-              newProduct.save((err)=>{
-                    if(err) reject(err);
-                    else resolve(newProduct);
-                })
-            })
+            try {
+             return await newProduct.save(newProduct)
+            } catch (error) {
+              throw new Error(error);
+            }
         },
     },
 };
